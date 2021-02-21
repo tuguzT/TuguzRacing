@@ -82,3 +82,6 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Rider for Unreal Engine IDE user specific files
+.idea
