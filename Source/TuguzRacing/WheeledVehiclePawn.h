@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "WheeledVehicle.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 #include "WheeledVehiclePawn.generated.h"
 
 /**
@@ -13,5 +15,47 @@ UCLASS()
 class TUGUZRACING_API AWheeledVehiclePawn : public AWheeledVehicle
 {
 	GENERATED_BODY()
-	
+
+public:
+	/**
+	 * Constructor of the object
+	 */
+	AWheeledVehiclePawn();
+
+	virtual void Tick(float DeltaSeconds) override;
+
+	/**
+	 * Control vehicle movement in air
+	 */
+	virtual void InAirControl(float DeltaSeconds);
+
+	/**
+	 * Steering vehicle function
+	 */
+	virtual void ApplySteering(float Value);
+
+	/**
+	* Throttle vehicle function
+	*/
+	virtual void ApplyThrottle(float Value);
+
+	/**
+	 * On handbrake press event function
+	 */
+	virtual void OnHandbrakePress();
+
+	/**
+	* On handbrake release event function
+	*/
+	virtual void OnHandbrakeRelease();
+
+protected:
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+
+private:
+	UPROPERTY()
+	USpringArmComponent *SpringArmComponent;
+
+	UPROPERTY()
+	UCameraComponent *CameraComponent;
 };
