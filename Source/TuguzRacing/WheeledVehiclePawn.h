@@ -4,8 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "WheeledVehicle.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "Camera/CameraComponent.h"
 #include "WheeledVehiclePawn.generated.h"
 
 /**
@@ -27,6 +25,7 @@ public:
 	/**
 	 * Control vehicle movement in air
 	 */
+	UFUNCTION()
 	virtual void InAirControl(float DeltaSeconds);
 
 	/**
@@ -35,8 +34,8 @@ public:
 	virtual void ApplySteering(float Value);
 
 	/**
-	* Throttle vehicle function
-	*/
+	 * Throttle vehicle function
+	 */
 	virtual void ApplyThrottle(float Value);
 
 	/**
@@ -45,17 +44,10 @@ public:
 	virtual void OnHandbrakePress();
 
 	/**
-	* On handbrake release event function
-	*/
+	 * On handbrake release event function
+	 */
 	virtual void OnHandbrakeRelease();
 
 protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-
-private:
-	UPROPERTY()
-	USpringArmComponent *SpringArmComponent;
-
-	UPROPERTY()
-	UCameraComponent *CameraComponent;
 };

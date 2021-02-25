@@ -38,17 +38,6 @@ AWheeledVehiclePawn::AWheeledVehiclePawn()
 	Transmission.bUseGearAutoBox = true;
 	Transmission.GearSwitchTime = 0.15;
 	Transmission.GearAutoBoxLatency = 1;
-
-	// Setup spring arm component for camera component
-	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
-	SpringArmComponent->SetupAttachment(RootComponent);
-	SpringArmComponent->TargetArmLength = 250;
-	SpringArmComponent->bUsePawnControlRotation = true;
-
-	// Setup camera component
-	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	CameraComponent->SetupAttachment(SpringArmComponent, USpringArmComponent::SocketName);
-	CameraComponent->FieldOfView = 90;
 }
 
 void AWheeledVehiclePawn::Tick(const float DeltaSeconds)
@@ -82,7 +71,7 @@ void AWheeledVehiclePawn::OnHandbrakeRelease()
 	GetVehicleMovementComponent()->SetHandbrakeInput(false);
 }
 
-void AWheeledVehiclePawn::SetupPlayerInputComponent(UInputComponent* const PlayerInputComponent)
+void AWheeledVehiclePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
